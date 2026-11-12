@@ -1,0 +1,33 @@
+# Bağımlılık klasörleri (Kesinlikle depoya alınmamalı)
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+
+# Gizli bilgiler ve ortam değişkenleri (.env teslimde olmamalı)
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+backend/.env
+
+# Derleme, paketleme ve sistem çıktıları
+dist/
+build/
+bin/
+obj/
+*.dll
+*.exe
+*.log
+npm-debug.log*
+
+# Test kapsama (coverage) çıktıları
+coverage/
+backend/coverage/
+
+# IDE ve İşletim Sistemi dosyaları
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

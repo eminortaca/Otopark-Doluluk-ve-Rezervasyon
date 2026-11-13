@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const pool = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
+const spotRoutes = require('./routes/spotRoutes');
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(express.json());
 
 // Rotalar
 app.use('/api/auth', authRoutes);
+app.use('/api/spots', spotRoutes);
 
 // Sağlık kontrolü uç noktası
 app.get('/api/health', async (req, res) => {

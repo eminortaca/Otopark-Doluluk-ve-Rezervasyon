@@ -3,15 +3,16 @@ const cors = require('cors');
 const pool = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const spotRoutes = require('./routes/spotRoutes');
+const reservationRoutes = require('./routes/reservationRoutes');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-// Rotalar
 app.use('/api/auth', authRoutes);
 app.use('/api/spots', spotRoutes);
+app.use('/api/reservations', reservationRoutes);
 
 // Sağlık kontrolü uç noktası
 app.get('/api/health', async (req, res) => {

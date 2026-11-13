@@ -1,14 +1,17 @@
 const express = require('express');
 const cors = require('cors');
 const pool = require('./config/db');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 
-// Middleware'ler
 app.use(cors());
 app.use(express.json());
 
-// Sağlık kontrolü ve Veritabanı bağlantı testi uç noktası
+// Rotalar
+app.use('/api/auth', authRoutes);
+
+// Sağlık kontrolü uç noktası
 app.get('/api/health', async (req, res) => {
     try {
         await pool.query('SELECT 1');

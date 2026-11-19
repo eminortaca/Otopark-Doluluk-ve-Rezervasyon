@@ -1,0 +1,162 @@
+:root {
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --danger: #dc2626;
+    --success: #16a34a;
+    --warning: #d97706;
+    --bg: #f8fafc;
+    --card-bg: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+/* Üst Menü (Semantik Header & Nav) */
+header {
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+header h1 {
+    font-size: 1.25rem;
+    color: var(--primary);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+}
+
+nav a:hover, nav a.active {
+    background-color: #eff6ff;
+    color: var(--primary);
+}
+
+/* Ana İçerik (Semantik Main) */
+main {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Kartlar ve Formlar */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.auth-container {
+    max-width: 420px;
+    margin: 4rem auto;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn:hover { background-color: var(--primary-hover); }
+.btn-danger { background-color: var(--danger); }
+.btn-secondary { background-color: var(--text-muted); }
+.btn-block { width: 100%; }
+
+/* Grid Yapısı (Park Yerleri Listesi İçin) */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.badge-success { background: #dcfce7; color: var(--success); }
+.badge-danger { background: #fee2e2; color: var(--danger); }
+.badge-info { background: #dbeafe; color: var(--primary); }
+
+.alert {
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    display: none;
+}
+.alert-error { background: #fee2e2; color: var(--danger); border: 1px solid #fecaca; }
+.alert-success { background: #dcfce7; color: var(--success); border: 1px solid #bbf7d0; }
+
+/* Duyarlı (Responsive) Tasarım Kuralları */
+@media (max-width: 640px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    nav {
+        width: 100%;
+        justify-content: space-between;
+    }
+}

@@ -115,9 +115,43 @@ main {
 }
 
 .btn:hover { background-color: var(--primary-hover); }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
 .btn-danger { background-color: var(--danger); }
 .btn-secondary { background-color: var(--text-muted); }
 .btn-block { width: 100%; }
+.btn-sm { padding: 0.4rem 0.8rem; font-size: 0.85rem; }
+
+.user-greeting {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+/* Filtreleme Çubuğu */
+.filter-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1rem;
+    align-items: end;
+}
+
+.filter-bar .form-group {
+    margin-bottom: 0;
+}
+
+.filter-actions {
+    display: flex;
+    gap: 0.5rem;
+}
 
 /* Grid Yapısı (Park Yerleri Listesi İçin) */
 .grid {
@@ -125,6 +159,46 @@ main {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.25rem;
     margin-top: 1.5rem;
+}
+
+.spot-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.9rem;
+}
+
+.spot-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.spot-code {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.spot-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+}
+
+.spot-price {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.spot-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
 }
 
 .badge {
@@ -142,12 +216,36 @@ main {
 .alert {
     padding: 0.75rem 1rem;
     border-radius: 6px;
+    margin-top: 1rem;
     margin-bottom: 1rem;
     font-size: 0.9rem;
     display: none;
 }
 .alert-error { background: #fee2e2; color: var(--danger); border: 1px solid #fecaca; }
 .alert-success { background: #dcfce7; color: var(--success); border: 1px solid #bbf7d0; }
+
+/* Sayfalama ve Durum Kartları */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.page-info {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.empty-state,
+.loading-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2.5rem 1rem;
+    color: var(--text-muted);
+}
 
 /* Duyarlı (Responsive) Tasarım Kuralları */
 @media (max-width: 640px) {
@@ -157,6 +255,14 @@ main {
     }
     nav {
         width: 100%;
+        flex-wrap: wrap;
         justify-content: space-between;
+    }
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .filter-bar {
+        grid-template-columns: 1fr;
     }
 }

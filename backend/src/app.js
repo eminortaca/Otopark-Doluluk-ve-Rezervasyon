@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const pool = require('./config/db');
@@ -11,6 +12,9 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+// Frontend statik dosyalarını sun
+app.use(express.static(path.join(__dirname, '../../frontend')));
 
 // Ek Özellik: Swagger (OpenAPI) Canlı Dokümantasyon Rotası
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));

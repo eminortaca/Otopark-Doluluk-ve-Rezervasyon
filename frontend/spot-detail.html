@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Park Yeri Detayı - Otopark Doluluk ve Rezervasyon Sistemi</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>🚗 Otopark Doluluk ve Rezervasyon Sistemi</h1>
+        <nav>
+            <a href="dashboard.html">Park Yerleri</a>
+            <a href="reservations.html">Rezervasyonlarım</a>
+            <a href="admin.html" id="admin-nav-link" style="display: none;">Yönetim Paneli</a>
+            <a href="/api-docs" target="_blank">Swagger API</a>
+            <span id="user-greeting" class="user-greeting"></span>
+            <button type="button" id="logout-btn" class="btn btn-secondary btn-sm">Çıkış Yap</button>
+        </nav>
+    </header>
+
+    <main>
+        <a href="dashboard.html" class="back-link">← Park Yerlerine Dön</a>
+
+        <div id="alert-box" class="alert"></div>
+
+        <div class="detail-layout">
+            <!-- Sol Sütun: Park Yeri Bilgileri ve Aktif Rezervasyon Saatleri -->
+            <div class="detail-column">
+                <section class="card" id="spot-info-card">
+                    <div class="spot-card-header">
+                        <h2 id="spot-code-title">Park Yeri Yükleniyor...</h2>
+                        <span id="spot-status-badge" class="badge badge-info">Yükleniyor</span>
+                    </div>
+
+                    <div class="detail-meta-grid">
+                        <div class="detail-stat">
+                            <span class="detail-stat-label">Kat Bilgisi</span>
+                            <span id="spot-floor" class="detail-stat-value">-</span>
+                        </div>
+                        <div class="detail-stat">
+                            <span class="detail-stat-label">Park Yeri Tipi</span>
+                            <span id="spot-type" class="detail-stat-value">-</span>
+                        </div>
+                        <div class="detail-stat">
+                            <span class="detail-stat-label">Saatlik Ücret</span>
+                            <span id="spot-rate" class="detail-stat-value">-</span>
+                        </div>
+                        <div class="detail-stat">
+                            <span class="detail-stat-label">Park Yeri No</span>
+                            <span id="spot-id-display" class="detail-stat-value">-</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="card">
+                    <h3>Aktif Rezervasyon Saatleri</h3>
+                    <p class="form-hint">Seçeceğiniz tarih ve saat aralığı aşağıdaki aktif rezervasyonlarla çakışmamalıdır.</p>
+                    <div id="active-reservations-list" class="reservation-list">
+                        <p class="form-hint">Aktif rezervasyonlar yükleniyor...</p>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Sağ Sütun: Yeni Rezervasyon Oluşturma Formu -->
+            <section class="card">
+                <h2 style="margin-bottom: 1rem;">Yeni Rezervasyon Oluştur</h2>
+
+                <div id="maintenance-notice" class="alert alert-error" style="display: none;">
+                    Bu park yeri şu anda bakımda olduğu için rezervasyon oluşturulamaz.
+                </div>
+
+                <form id="reservation-form">
+                    <div class="form-group">
+                        <label for="plate-number">Araç Plakası</label>
+                        <input type="text" id="plate-number" required minlength="5" maxlength="15" placeholder="Örn: 22 ABC 123">
+                        <p class="form-hint">Plaka 5 ile 15 karakter arasında olmalıdır.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="start-time">Başlangıç Tarihi ve Saati</label>
+                        <input type="datetime-local" id="start-time" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="end-time">Bitiş Tarihi ve Saati</label>
+                        <input type="datetime-local" id="end-time" required>
+                    </div>
+
+                    <div id="price-preview" class="price-preview">
+                        <div class="price-preview-row">
+                            <span>Tahmini Süre</span>
+                            <strong id="estimated-duration">-</strong>
+                        </div>
+                        <div class="price-preview-row">
+                            <span>Tahmini Toplam Tutar</span>
+                            <span id="estimated-price" class="price-preview-total">-</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="reserve-submit-btn" class="btn btn-block">Rezervasyonu Onayla</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/spot-detail.js"></script>
+</body>
+</html>

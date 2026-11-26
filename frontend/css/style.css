@@ -366,6 +366,63 @@ main {
     color: var(--primary);
 }
 
+.btn-danger:hover { background-color: #b91c1c; }
+.badge-warning { background: #fef3c7; color: var(--warning); }
+
+/* Rezervasyonlar ve Yönetim Tablosu */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+}
+
+.data-table th {
+    text-align: left;
+    padding: 0.75rem 0.9rem;
+    background: var(--bg);
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+}
+
+.data-table td {
+    padding: 0.85rem 0.9rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+
+.data-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.spot-link {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.spot-link:hover {
+    text-decoration: underline;
+}
+
+.table-subtext {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.empty-state-actions {
+    margin-top: 1rem;
+}
+
 /* Duyarlı (Responsive) Tasarım Kuralları */
 @media (max-width: 768px) {
     .detail-layout {

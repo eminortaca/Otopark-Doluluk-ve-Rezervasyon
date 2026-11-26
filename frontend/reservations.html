@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezervasyonlarım - Otopark Doluluk ve Rezervasyon Sistemi</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>🚗 Otopark Doluluk ve Rezervasyon Sistemi</h1>
+        <nav>
+            <a href="dashboard.html">Park Yerleri</a>
+            <a href="reservations.html" class="active">Rezervasyonlarım</a>
+            <a href="admin.html" id="admin-nav-link" style="display: none;">Yönetim Paneli</a>
+            <a href="/api-docs" target="_blank">Swagger API</a>
+            <span id="user-greeting" class="user-greeting"></span>
+            <button type="button" id="logout-btn" class="btn btn-secondary btn-sm">Çıkış Yap</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h2 id="page-title">Rezervasyonlarım</h2>
+            <span id="reservations-count" class="badge badge-info">Yükleniyor...</span>
+        </section>
+
+        <div id="alert-box" class="alert"></div>
+
+        <section class="card">
+            <div class="table-wrapper" id="reservations-table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Park Yeri</th>
+                            <th id="user-col-header" style="display: none;">Kullanıcı</th>
+                            <th>Plaka</th>
+                            <th>Başlangıç</th>
+                            <th>Bitiş</th>
+                            <th>Tutar</th>
+                            <th>Durum</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reservations-tbody">
+                        <tr>
+                            <td colspan="8" class="loading-state">Rezervasyonlar yükleniyor...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="empty-reservations" class="empty-state" style="display: none;">
+                <p>Henüz aktif veya geçmiş bir rezervasyonunuz bulunmuyor.</p>
+                <div class="empty-state-actions">
+                    <a href="dashboard.html" class="btn btn-sm">Park Yerlerini İncele</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/reservations.js"></script>
+</body>
+</html>

@@ -25,7 +25,9 @@ CREATE TABLE parking_spots (
     spot_type ENUM('standart', 'elektrikli', 'engelli') NOT NULL DEFAULT 'standart',
     hourly_rate DECIMAL(10, 2) NOT NULL,         -- Saatlik ücret (Örn: 50.00)
     is_active BOOLEAN NOT NULL DEFAULT TRUE,     -- Bakımda mı / Kullanıma açık mı?
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT chk_spots_hourly_rate CHECK (hourly_rate >= 0)
 );
 
 -- 3. Tablo: Rezervasyonlar (users ve parking_spots ile Yabancı Anahtar [FK] ilişkili)
@@ -46,7 +48,8 @@ CREATE TABLE reservations (
         ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_reservations_spot 
         FOREIGN KEY (spot_id) REFERENCES parking_spots(id) 
-        ON DELETE CASCADE ON UPDATE CASCADE
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT chk_reservations_time CHECK (end_time > start_time)
 );
 
 -- Aramalarda ve tarih çakışması kontrollerinde performans için indeksler
@@ -58,8 +61,8 @@ CREATE INDEX idx_reservations_time ON reservations(spot_id, status, start_time, 
 -- ==========================================================
 -- Not: Aşağıdaki bcrypt hash'i "123456" şifresine karşılık gelmektedir ($2b$10$...).
 INSERT INTO users (full_name, email, password_hash, role) VALUES
-('Sistem Yöneticisi', 'admin@otopark.com', '$2b$10$X7G.y2c8J8p1v9W3k5N6/.qR4t8u2w1x0y3z5A7B9C1D3E5F7G9H1', 'admin'),
-('Örnek Kullanıcı', 'user@otopark.com', '$2b$10$X7G.y2c8J8p1v9W3k5N6/.qR4t8u2w1x0y3z5A7B9C1D3E5F7G9H1', 'user');
+('Sistem Yöneticisi', 'admin@otopark.com', '$2b$10$DcFpmBe3GHRmaaKpnVOcRuaWev4PSg.M/AjhTwGoK.nVkHBVTMkaq', 'admin'),
+('Örnek Kullanıcı', 'user@otopark.com', '$2b$10$DcFpmBe3GHRmaaKpnVOcRuaWev4PSg.M/AjhTwGoK.nVkHBVTMkaq', 'user');
 
 -- Farklı kat ve tiplerde 12 adet örnek park yeri (Sayfalama ve filtrelemeyi test etmek için)
 INSERT INTO parking_spots (spot_code, floor, spot_type, hourly_rate, is_active) VALUES
@@ -76,6 +79,8 @@ INSERT INTO parking_spots (spot_code, floor, spot_type, hourly_rate, is_active) 
 ('C-01', -1, 'standart', 40.00, TRUE),
 ('C-02', -1, 'elektrikli', 70.00, TRUE);
 
--- Örnek bir aktif rezervasyon
+-- Örnek geçmiş ve ileri tarihli rezervasyonlar
 INSERT INTO reservations (user_id, spot_id, plate_number, start_time, end_time, total_price, status) VALUES
-(2, 1, '22 ABC 123', '2026-11-15 10:00:00', '2026-11-15 13:00:00', 150.00, 'aktif');
+(2, 1, '22 ABC 123', '2026-11-15 10:00:00', '2026-11-15 13:00:00', 150.00, 'tamamlandi'),
+(2, 2, '34 IST 456', '2026-12-10 09:00:00', '2026-12-10 12:00:00', 150.00, 'aktif'),
+(2, 4, '22 EV 022', '2026-12-12 14:00:00', '2026-12-12 16:00:00', 160.00, 'aktif');
